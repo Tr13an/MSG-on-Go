@@ -1,39 +1,28 @@
-основной пакет
 
-импорт "чистый"
+ package main
 
-импортировать "фмт"
+import "net"
+import "fmt"
+import "bufio"
+import "os"
 
-импортировать "буфио"
-
-импортировать "ОС"
-
-основная функция () {
+func main() {
 
   // Подключаемся к сокету
-
-  подключение, _ := net.Dial("TCP", "127.0.0.1:8081")
-
-  для {
-
+  conn, _ := net.Dial("tcp", "127.0.0.1:8081")
+  for { 
     // Чтение входных данных от stdin
-
-    читатель: = bufio.NewReader(os.Stdin)
-
-    fmt.Print("Текст для отправки:")
-
-    текст, _ := читатель.ReadString('\n')
-
-    // Отправляем в сокет
-
-    fmt.Fprintf(соединение, текст + "\n")
-
+    reader := bufio.NewReader(os.Stdin)
+    fmt.Print("Text to send: ")
+    text, _ := reader.ReadString('\n')
+    // Отправляем в socket
+    fmt.Fprintf(conn, text + "\n")
     // Прослушиваем ответ
-
-    сообщение, _ := bufio.NewReader(conn).ReadString('\n')
-
-    fmt.Print("Сообщение от сервера: "+сообщение)
-
+    message, _ := bufio.NewReader(conn).ReadString('\n')
+    fmt.Print("Message from server: "+message)
   }
+} 
 
-}
+
+
+
