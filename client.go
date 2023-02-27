@@ -1,5 +1,5 @@
 
- package main
+package main
 
 import "net"
 import "fmt"
